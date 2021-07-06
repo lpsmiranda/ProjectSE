@@ -1,6 +1,5 @@
 package pt.ulisboa.tecnico.learnjava.mbway.controllers;
 
-//import java.util.Hashtable;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,9 +19,6 @@ public class associateMbwayController {
 	Services services = new Services();
 	MBwayView view;
 	Client client;
-	
-	
-	//public Hashtable<String, Integer> confirmMbwayTab = new Hashtable<String, Integer>();
 
 	int min = 100000;
 	int max = 999999;

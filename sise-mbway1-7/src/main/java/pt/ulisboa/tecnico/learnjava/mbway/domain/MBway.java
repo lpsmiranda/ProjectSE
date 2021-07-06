@@ -26,7 +26,6 @@ public class MBway {
 		Scanner inputs = new Scanner(System.in);
 	
 		MBwayView views = new MBwayView();
-		//Services services = new Services();
 		Bank bank1 = new Bank("CGD");
 		Bank bank2 = new Bank("BPI");
 		Services services = new Services();
@@ -42,7 +41,6 @@ public class MBway {
 		String iban3 = bank2.createAccount(AccountType.CHECKING, client3, 2500, 0);//BPICK3
 		String iban4 = bank1.createAccount(AccountType.SALARY, client4, 300, 0);//CGDSL4
 		
-		//mbway.put(client1.getPhoneNumber(), iban1);
 		mbway.put(client2.getPhoneNumber(), iban2);
 		mbway.put(client3.getPhoneNumber(), iban3);
 		mbway.put(client4.getPhoneNumber(), iban4);

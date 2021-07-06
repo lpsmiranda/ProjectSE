@@ -28,10 +28,6 @@ public class Client_MBway {
 		return this.client.getPhoneNumber();
 	}
 	
-	/*public String getIBANClient() throws BankException, AccountException, ClientException {
-		return bank.createAccount(AccountType.CHECKING, client, account.getBalance(), VALUE);
-	}*/
-	
 	public Account getAccount() {
 		return this.account;
 	}

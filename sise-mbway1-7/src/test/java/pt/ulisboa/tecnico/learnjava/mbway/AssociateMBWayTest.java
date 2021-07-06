@@ -47,20 +47,5 @@ public class AssociateMBWayTest {
 		String iban = "CGDCK1";
 		associateMbwayController associateMBWay = new associateMbwayController(phone, iban);
 	}
-	
-	
-		
-		
-		
-//		assertEquals("CGD", bank1.getCode());
-//		assertEquals("CGDCK1", iban1);
-//		assertEquals("BPICK2", iban2);
-//		assertEquals("BPICK3", iban3);
-		
-		// TODO: call associate mbway controller with data
-		//MBway mbwaydb = new MBway();
-		//associateMbwayController task1 = new associateMbwayController ("912346987", iban1);
-		// mbwaydb.check_if_client_exists("912346987") ... podem usar outra key que nao o numero de telefone (depende da forma como criarem a vossa base de dados)
-		
-	}
+}
 

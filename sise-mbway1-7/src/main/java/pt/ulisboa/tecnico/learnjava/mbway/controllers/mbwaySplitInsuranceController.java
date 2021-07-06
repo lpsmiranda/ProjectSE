@@ -23,7 +23,7 @@ public class mbwaySplitInsuranceController {
 		numberOfMembers = numMembers;
 		InsuranceAmount = amount;
 	}
-		
+			
 	public void CreateFamilyMemberTable() throws Exception {
 			int countMembers = 0;
 			views.newMemberQ();
