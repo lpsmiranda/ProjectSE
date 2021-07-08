@@ -2,22 +2,22 @@ package pt.ulisboa.tecnico.learnjava.mbway.domain;
 
 import java.util.Scanner;
 
-import pt.ulisboa.tecnico.learnjava.mbway.controllers.associateMbwayController;
-import pt.ulisboa.tecnico.learnjava.mbway.controllers.confirmMbwayController;
-import pt.ulisboa.tecnico.learnjava.mbway.controllers.mbwayTransferController;
+import pt.ulisboa.tecnico.learnjava.mbway.controllers.AssociateMbwayController;
+import pt.ulisboa.tecnico.learnjava.mbway.controllers.ConfirmMbwayController;
+import pt.ulisboa.tecnico.learnjava.mbway.controllers.MbwayTransferController;
 import pt.ulisboa.tecnico.learnjava.sibs.exceptions.PhoneNumberException;
 
 public class MBwayView {
-	associateMbwayController associateMbway;
-	confirmMbwayController confirmMbway;
-	mbwayTransferController mbwayTransfer;
+	AssociateMbwayController associateMbway;
+	ConfirmMbwayController confirmMbway;
+	MbwayTransferController mbwayTransfer;
 	Scanner inputs = new Scanner(System.in);
 	
-	public void associateMbwayOutputView(associateMbwayController associateMbway) {
+	public void associateMbwayOutputView(AssociateMbwayController associateMbway) {
 		System.out.println( "Code: " + associateMbway.getCode() + " (don't share with anyone)");
 	}
 	
-	public void confirmMbwayOutputView(confirmMbwayController confirmMbway) throws PhoneNumberException {
+	public void confirmMbwayOutputView(ConfirmMbwayController confirmMbway) throws PhoneNumberException {
 			System.out.println("MBWAY association confirmed successfully!");
 	}
 	

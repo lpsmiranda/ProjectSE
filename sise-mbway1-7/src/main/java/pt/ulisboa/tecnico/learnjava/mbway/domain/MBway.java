@@ -7,10 +7,10 @@ import pt.ulisboa.tecnico.learnjava.bank.domain.Bank;
 import pt.ulisboa.tecnico.learnjava.bank.domain.Client;
 import pt.ulisboa.tecnico.learnjava.bank.domain.Bank.AccountType;
 import pt.ulisboa.tecnico.learnjava.bank.services.Services;
-import pt.ulisboa.tecnico.learnjava.mbway.controllers.associateMbwayController;
-import pt.ulisboa.tecnico.learnjava.mbway.controllers.confirmMbwayController;
-import pt.ulisboa.tecnico.learnjava.mbway.controllers.mbwaySplitInsuranceController;
-import pt.ulisboa.tecnico.learnjava.mbway.controllers.mbwayTransferController;
+import pt.ulisboa.tecnico.learnjava.mbway.controllers.MbwaySplitInsuranceController;
+import pt.ulisboa.tecnico.learnjava.mbway.controllers.AssociateMbwayController;
+import pt.ulisboa.tecnico.learnjava.mbway.controllers.ConfirmMbwayController;
+import pt.ulisboa.tecnico.learnjava.mbway.controllers.MbwayTransferController;
 import pt.ulisboa.tecnico.learnjava.sibs.exceptions.CodeException;
 import pt.ulisboa.tecnico.learnjava.sibs.exceptions.IbanException;
 import pt.ulisboa.tecnico.learnjava.sibs.exceptions.PhoneNumberException;
@@ -58,7 +58,7 @@ public class MBway {
 				String IBAN = inputs.nextLine();
 				
 				try {
-					associateMbwayController associateMbway = new associateMbwayController(phoneNumber, IBAN);
+					AssociateMbwayController associateMbway = new AssociateMbwayController(phoneNumber, IBAN);
 					associateMbway.process();
 					views.associateMbwayOutputView(associateMbway);
 					
@@ -78,7 +78,7 @@ public class MBway {
 				String confirmationCode = inputs.nextLine();
 				
 				try {
-					confirmMbwayController confirmMbway = new confirmMbwayController(phoneNumberCMBway, 
+					ConfirmMbwayController confirmMbway = new ConfirmMbwayController(phoneNumberCMBway, 
 																					confirmationCode);
 					confirmMbway.process();
 					views.confirmMbwayOutputView(confirmMbway);
@@ -105,7 +105,7 @@ public class MBway {
 				String amountTransfer = inputs.nextLine();
 				
 				try {
-				mbwayTransferController mbwayTransfer = new mbwayTransferController(sourcePhoneNumber,
+				MbwayTransferController mbwayTransfer = new MbwayTransferController(sourcePhoneNumber,
 																					targetPhoneNumber, 
 																					Integer.parseInt(amountTransfer));
 				mbwayTransfer.process();
@@ -126,7 +126,7 @@ public class MBway {
 				System.out.println("Insert insurance total amount: ");
 				String amountInsurance = inputs.nextLine();
 				try {
-					mbwaySplitInsuranceController mbwaySIC = new mbwaySplitInsuranceController(Integer.parseInt(numberFamilyMemb),
+					MbwaySplitInsuranceController mbwaySIC = new MbwaySplitInsuranceController(Integer.parseInt(numberFamilyMemb),
 																								Integer.parseInt(amountInsurance));
 					mbwaySIC.process();
 					views.mbwaySplitInsuranceControllerView();

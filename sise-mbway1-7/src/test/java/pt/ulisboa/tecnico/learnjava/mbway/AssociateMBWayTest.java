@@ -12,9 +12,12 @@ import pt.ulisboa.tecnico.learnjava.bank.exceptions.AccountException;
 import pt.ulisboa.tecnico.learnjava.bank.exceptions.BankException;
 import pt.ulisboa.tecnico.learnjava.bank.exceptions.ClientException;
 import pt.ulisboa.tecnico.learnjava.bank.services.Services;
-import pt.ulisboa.tecnico.learnjava.mbway.controllers.associateMbwayController;
+import pt.ulisboa.tecnico.learnjava.mbway.controllers.AssociateMbwayController;
 import pt.ulisboa.tecnico.learnjava.mbway.domain.MBway;
 import pt.ulisboa.tecnico.learnjava.mbway.domain.MBwayView;
+import pt.ulisboa.tecnico.learnjava.sibs.exceptions.IbanException;
+import pt.ulisboa.tecnico.learnjava.sibs.exceptions.OperationException;
+import pt.ulisboa.tecnico.learnjava.sibs.exceptions.PhoneNumberException;
 
 
 public class AssociateMBWayTest {
@@ -45,7 +48,25 @@ public class AssociateMBWayTest {
 	public void success() throws Exception {
 		String phone = "912346987";
 		String iban = "CGDCK1";
-		associateMbwayController associateMBWay = new associateMbwayController(phone, iban);
+		AssociateMbwayController associateMBWay = new AssociateMbwayController(phone, iban);
 	}
+
+	@Test(expected = PhoneNumberException.class)
+	public void phoneNumberLessThanNineDigits() throws Exception {
+		String phone = "9123469";
+		String iban = "CGDCK1";
+		AssociateMbwayController associateMBWay = new AssociateMbwayController(phone, iban);
+		associateMBWay.confirmPhoneNumberDigits();
+	}
+	
+	@Test(expected = IbanException.class)
+	public void inexistentAccount() throws Exception {
+		String phone = "9123469";
+		String iban = "BCPCK1";
+		AssociateMbwayController associateMBWay = new AssociateMbwayController(phone, iban);
+		associateMBWay.confirmBank();
+	}
+	
+	
 }
 
