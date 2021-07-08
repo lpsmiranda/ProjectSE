@@ -12,6 +12,7 @@ import pt.ulisboa.tecnico.learnjava.mbway.controllers.AssociateMbwayController;
 import pt.ulisboa.tecnico.learnjava.mbway.controllers.ConfirmMbwayController;
 import pt.ulisboa.tecnico.learnjava.mbway.controllers.MbwayTransferController;
 import pt.ulisboa.tecnico.learnjava.sibs.exceptions.CodeException;
+import pt.ulisboa.tecnico.learnjava.sibs.exceptions.FamilyMembersException;
 import pt.ulisboa.tecnico.learnjava.sibs.exceptions.IbanException;
 import pt.ulisboa.tecnico.learnjava.sibs.exceptions.PhoneNumberException;
 import pt.ulisboa.tecnico.learnjava.sibs.exceptions.SibsException;
@@ -89,9 +90,6 @@ public class MBway {
 				}catch (CodeException msg) {
 					views.codeError(msg.getMessage());
 				}
-
-				System.out.println(mbway);
-
 				
 			}else if (operation.equals("mbway-transfer")) {
 				System.out.println(mbway);
@@ -136,8 +134,10 @@ public class MBway {
 					
 				}catch (SibsException msg) {
 					views.IbanError(msg.getMessage());
-				}
 				
+				}catch (FamilyMembersException msg) {
+					views.NumberOfMembersError(msg.getMessage());
+				}
 			}
 			
 			System.out.println("\nInsert operation: ");

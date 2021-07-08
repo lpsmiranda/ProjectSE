@@ -23,6 +23,28 @@ public class MbwaySplitInsuranceController {
 		numberOfMembers = numMembers;
 		insuranceAmount = amount;
 	}
+	
+	public void confirmNumberMembers(int NumberMemberClient, int NumberMemberFunction) throws FamilyMembersException {
+		if (NumberMemberClient > NumberMemberFunction) throw new FamilyMembersException("Oh no! Too many family members.");
+		else if (NumberMemberClient < NumberMemberFunction) throw new FamilyMembersException("Oh no! One family member is missing.");
+	}
+	
+	public void PhoneNumberNotAssociated(String pn) throws PhoneNumberException {
+		int aux = 0;
+		for (String elem : MBway.mbway.keySet()) {
+			if (pn.equals(elem) ) aux++;
+		}
+		if(aux == 0) throw new PhoneNumberException("Friend <PHONE_NUMBER> is not registered.");
+	}
+	
+	public void AmountInvalid(String amount) throws SibsException {
+		if(Integer.parseInt(amount) <= 0) throw new SibsException("Amount introduced is not allowed!");
+	}
+	
+	public void MemberDontHaveEnoughMoney(String PhoneNumber, String amount) throws SibsException {
+		Account account = services.getAccountByIban(MBway.mbway.get(PhoneNumber));
+		if(account.getBalance() < Integer.parseInt(amount)) throw new SibsException("Oh no! One family member doesn’t have money to pay!");
+	}
 			
 	public void createFamilyMemberTable() throws Exception {
 			int countMembers = 0;
@@ -33,25 +55,18 @@ public class MbwaySplitInsuranceController {
 				while(!question.equals("no")) {	
 					views.newMemberPN();
 					String pn = elements.nextLine();
-					int aux = 0;
 					String amt = null;
+	
+					PhoneNumberNotAssociated(pn);
 					for (String elem : MBway.mbway.keySet()) {
-						if(pn.equals(elem)) {  		//Só quando o numero tem mbway é que pode ser inserido
-							aux++;
+						if(pn.equals(elem)) {  				//Só quando o numero tem mbway é que pode ser inserido
 							views.newMemberA();
 							amt = elements.nextLine();
 						}
 					}
-					if(aux == 0) throw new PhoneNumberException("Friend <PHONE_NUMBER> is not registered.");
-				
-					Account account = services.getAccountByIban(MBway.mbway.get(pn));
-					if(account.getBalance() < Integer.parseInt(amt)) {
-						throw new SibsException("Oh no! One family member doesn’t have money to pay!");
-					}
 					
-					if(Integer.parseInt(amt) <= 0) {
-						throw new SibsException("Amount introduced is not allowed!");
-					}
+					MemberDontHaveEnoughMoney(pn, amt);
+					AmountInvalid(amt);
 					
 					familyMembers.put(pn, Integer.parseInt(amt));
 					countMembers++;
@@ -59,9 +74,7 @@ public class MbwaySplitInsuranceController {
 					question = elements.nextLine();
 			}
 		}
-			if (countMembers > numberOfMembers) throw new FamilyMembersException("Oh no! Too many family members.");
-			else if (countMembers < numberOfMembers) throw new FamilyMembersException("Oh no! One family member is missing.");
-			
+			confirmNumberMembers(countMembers, numberOfMembers);
 	}
 	
 	public void checkAmountTotal() throws SibsException {

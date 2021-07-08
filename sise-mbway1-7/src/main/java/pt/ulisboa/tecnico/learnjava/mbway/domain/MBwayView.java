@@ -61,6 +61,11 @@ public class MBwayView {
 		System.out.println("Insurance paid successfully!");
 	}
 	
+	public void NumberOfMembersError(String message) {
+		System.out.println(message);
+	}
+	
+	
 	public void exitView() {
 		System.out.println("MBWAY terminated with success.");
 	}
