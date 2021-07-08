@@ -47,8 +47,7 @@ public class ConfirmMbwayController {
 				}
 			}else {
 				throw new CodeException("Wrong confirmation code. Try association again.");// Se o código introduzido está incorreto ou inexistente
-			}
-		} isMbwayCodeEmpty(); }
+			} } isMbwayCodeEmpty(); }
 	
 
 
